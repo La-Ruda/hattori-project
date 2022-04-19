@@ -102,8 +102,10 @@ input, select {
     --primaryColor: whitesmoke;
     --secondaryColor: black;
     --thirdColor: #be0032;
-    --primaryFont: "Helvetica";
-    --fontSizeOne: 22px;
+    --fourthColor: #536872;
+    --primaryFont: "Montserrat";
+    --secondaryFont: "Roboto";
+    --fontSizeOne: 20px;
     --fontSizeTwo: 18px;
     --fontSizeThree: 15px;
 }
@@ -115,17 +117,20 @@ html {
     height: 3000px;
 }
 
+
+
 .header {
     height: 100%;
     width: 25%;
     display: flex;
     justify-content: center;
+    font-family: var(--primaryFont);
 }
 
 .header__nav {
     margin-top: 80px;
     position: fixed;
-    width: 150px;
+    width: 160px;
     height: auto;
 }
 
@@ -155,13 +160,18 @@ html {
     height: auto;
     grid-template-columns: repeat(3, auto-fit, minmax(100px, 1fr));
     grid-template-rows: masonry;
+    row-gap: 40px;
+    column-gap: 20px;
+    position: relative;
+    left: 25%;
+    top: 80px;
 }
 
 .product__card {
     display: flex;
     flex-direction: column;
-    max-width: 250px;
-    height: auto;
+    max-width: 300px;
+    height: max-content;
     background: white;
     border-radius: 3px;
 
@@ -180,16 +190,20 @@ html {
 .product__headline {
     margin-top: 1rem;
     font-size: var(--fontSizeOne);
+    font-family: var(--primaryFont);
 }
 
 .product__description {
     margin-top: 0.7rem;
-    font-size: var(--fontSizeTwo)
+    font-size: var(--fontSizeTwo);
+    font-family: var(--primaryFont);
+    line-height: 1.2;
 }
 
 .product__price {
     margin-top: 0.7rem;
     font-size: var(--fontSizeThree);
+    color: var(--fourthColor);
 }
 
 
@@ -200,3 +214,5 @@ html {
 .product__card--three {
     grid-column: 3;
 }
+
+
