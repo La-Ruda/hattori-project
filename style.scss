@@ -101,7 +101,7 @@ input, select {
 :root {
     --primaryColor: whitesmoke;
     --secondaryColor: black;
-    --thirdColor: #be0032;
+    --thirdColor: rgb(188, 0, 45);
     --fourthColor: #536872;
     --primaryFont: "Montserrat";
     --secondaryFont: "Roboto";
@@ -128,7 +128,6 @@ html {
 }
 
 .header__nav {
-    margin-top: 80px;
     position: fixed;
     width: 160px;
     height: auto;
@@ -139,6 +138,7 @@ html {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin: 80px 1rem 0 1rem;
 }
 
 
@@ -150,7 +150,8 @@ html {
 }
 
 .header__button--main {
-    margin-bottom: 0px;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 
@@ -158,8 +159,8 @@ html {
     display: grid;
     width: 60%;
     height: auto;
-    grid-template-columns: repeat(3, auto-fit, minmax(100px, 1fr));
-    grid-template-rows: masonry;
+    grid-template-columns: repeat(3, minmax(150px,1fr));
+    grid-auto-flow: dense;
     row-gap: 40px;
     column-gap: 20px;
     position: relative;
@@ -207,12 +208,47 @@ html {
 }
 
 
-.product__card--two {
-    grid-column: 2;
+/* QUERIES COUNTRY DONW FROM HERE */
+
+
+@media only screen and (max-width: 800px) {
+
+    .header {
+        height: 80px;
+        width: 100%;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    .header__nav {
+        width: auto;
+        position: unset;
+    }
+    
+    
+    .header__ul {
+        flex-direction: row;
+        margin: 0 1rem 0 1rem;
+    }
+    
+    .header__hyphen {
+        display: none;
+    }
+
+
+    .product {
+        width: 100%;
+        position: static;
+        margin: 40px 2% 0 2%;
+    }
+
 }
 
-.product__card--three {
-    grid-column: 3;
+
+@media only screen and (max-width: 535px) {
+
+    .product {
+        grid-template-columns: 1;
+        row-gap: 40px;
+    }
 }
-
-
