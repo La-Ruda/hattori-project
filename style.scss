@@ -108,13 +108,13 @@ input, select {
     --fontSizeOne: 20px;
     --fontSizeTwo: 18px;
     --fontSizeThree: 15px;
+    --fontSizeFourth: 4vw;
 }
 
 
 html {
     background-color: var(--primaryColor);
     font-size: var(--fontSizeOne);
-    height: 3000px;
 }
 
 
@@ -161,11 +161,11 @@ html {
     height: auto;
     grid-template-columns: repeat(3, minmax(150px,1fr));
     grid-auto-flow: dense;
-    row-gap: 40px;
     column-gap: 20px;
     position: relative;
     left: 25%;
     top: 80px;
+    padding-bottom: 50px;
 }
 
 .product__card {
@@ -175,7 +175,6 @@ html {
     height: max-content;
     background: white;
     border-radius: 3px;
-
 }
 
 .product__image {
@@ -247,8 +246,26 @@ html {
 
 @media only screen and (max-width: 535px) {
 
+
+    .header {
+        font-size: var(--fontSizeFourth);
+    }
+
     .product {
-        grid-template-columns: 1;
+        grid-template-columns: minmax(330px, 1fr);
         row-gap: 40px;
+        justify-self: center;
+    }
+
+    .product__card {
+        max-width: 250px;
+        max-height: min-content;
+        margin: 0 3%;
+        justify-self: center;
+    }
+
+
+    .product__text {
+        max-width: 250px;
     }
 }
