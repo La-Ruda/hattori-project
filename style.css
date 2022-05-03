@@ -112,6 +112,11 @@ input, select {
 html {
   background-color: var(--primaryColor);
   font-size: var(--fontSizeOne);
+  cursor: default;
+}
+
+body {
+  height: auto;
 }
 
 .header {
@@ -153,37 +158,46 @@ html {
 
 .product {
   display: grid;
+  grid-template-columns: repeat(3, minmax(150px, 1fr));
   width: 60%;
   height: auto;
-  grid-template-columns: repeat(3, minmax(150px, 1fr));
-  grid-auto-flow: dense;
   row-gap: 40px;
   -moz-column-gap: 20px;
        column-gap: 20px;
   position: relative;
-  left: 25%;
   top: 80px;
-  padding-bottom: 50px;
+  left: 25%;
+  padding-bottom: 20px;
 }
 
 .product__card {
   display: flex;
   flex-direction: column;
   max-width: 300px;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
+  max-height: 600px;
   background: white;
   border-radius: 3px;
+  z-index: 5;
+}
+
+.product__card--almostlast {
+  max-height: 460px;
+}
+
+.product__card--last {
+  max-height: 360px;
 }
 
 .product__image {
   -o-object-fit: cover;
      object-fit: cover;
-  max-width: -webkit-max-content;
-  max-width: -moz-max-content;
-  max-width: max-content;
-  height: auto;
+  max-width: auto;
+  max-height: 400px;
+  flex-basis: 300px;
+}
+
+.product__image--almostlast {
+  height: 450px;
 }
 
 .product__text {
@@ -196,6 +210,12 @@ html {
   font-family: var(--primaryFont);
 }
 
+@media not all and (hover: none) {
+  .product__headline:hover {
+    color: var(--thirdColor);
+    cursor: pointer;
+  }
+}
 .product__description {
   margin-top: 0.7rem;
   font-size: var(--fontSizeTwo);
@@ -209,8 +229,25 @@ html {
   color: var(--fourthColor);
 }
 
-/* QUERIES COUNTRY DONW FROM HERE */
-@media only screen and (max-width: 800px) {
+.footer__wave {
+  margin-top: -200px;
+}
+
+/* QUERIES DOWN FROM HERE */
+@media screen and (max-width: 1330px) {
+  .product__card--almostlast {
+    max-height: 600px;
+  }
+
+  .product__card--last {
+    max-height: 600px;
+  }
+
+  .footer__wave {
+    visibility: hidden;
+  }
+}
+@media screen and (max-width: 800px) {
   .header {
     display: flex;
     height: 80px;
@@ -239,7 +276,7 @@ html {
     margin: 40px 2% 0 2%;
   }
 }
-@media only screen and (max-width: 535px) {
+@media screen and (max-width: 535px) {
   .header {
     font-size: var(--fontSizeFourth);
   }
@@ -254,6 +291,7 @@ html {
   }
 
   .product {
+    display: grid;
     grid-template-columns: minmax(330px, 1fr);
     row-gap: 40px;
     justify-self: center;
