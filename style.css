@@ -441,7 +441,6 @@ body {
     max-height: -webkit-min-content;
     max-height: -moz-min-content;
     max-height: min-content;
-    margin: 0 3%;
     justify-self: center;
   }
 
