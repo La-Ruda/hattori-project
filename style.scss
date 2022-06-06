@@ -111,6 +111,19 @@ input, select {
     --fontSizeFourth: 13px;
 }
 
+@mixin header__ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 80px 1rem 0 1rem;
+    align-items: center;
+}
+
+@mixin default__grid {
+    grid-template-columns: repeat(3, minmax(150px, 300px));
+    grid-auto-rows: min-content;
+    grid-auto-flow: row;
+}
 
 html {
     background-color: var(--primaryColor);
@@ -121,12 +134,14 @@ html {
 body {
     height: auto;
     width: 100%;
+    overflow-x: hidden;
 }
+
 
 
 .header {
     height: 100%;
-    width: 25%;
+    width: 400px;
     display: flex;
     justify-content: center;
     font-family: var(--primaryFont);
@@ -140,10 +155,7 @@ body {
 
 
 .header__ul {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin: 80px 1rem 0 1rem;
+    @include header__ul()
 }
 
 
@@ -161,20 +173,95 @@ body {
 
 .header__hero {
     display: flex;
-    gap: 10px;
+    gap: 5px;
+    text-align: center;
+    padding-left: 19px;
 }
+
+
+.header__svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+
+/* HAMBURGER MENU START */
+
+#header__ham {
+    display: none;
+}
+
+#header__ham__toggle {
+    position: relative;
+    user-select: none;
+}
+
+#header__ham input {
+    display: none;
+}
+
+#header__ham__toggle input:checked ~ ul {
+    right: -52px;
+}
+
+
+#header__ham__box {
+    width: 40px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+@media not all and (hover:none) {
+    #header__ham__lines:hover {
+        cursor: pointer;
+    } 
+}
+
+#header__ham__lines {
+    width: 100%;
+    height: 3px;
+    background-color: var(--thirdColor);
+    z-index: 11;
+}
+
+#header__ham__ul {
+    background-color: white;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    padding: 50px 20px 10px;
+    right: -20rem;
+    top: -20px;
+    transition: right 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-around;
+    border: 2px solid var(--thirdColor);
+    text-align: center;
+    border-radius: 2px;
+    z-index: 10;
+}
+
+
+/* HAMBURGER MENU END */
+
 
 .product {
     display: grid;
-    grid-template-columns: repeat(3, minmax(150px, 1fr));
-    width: 60%;
+    @include default__grid();
+    max-width: 64vw;
     height: auto;
     row-gap: 40px;
     column-gap: 20px;
     position: relative;
+    left: 400px;
     top: 80px;
-    left: 25%;
     padding-bottom: 20px;
+    justify-content: center;
 }
 
 
@@ -193,8 +280,13 @@ body {
     flex-direction: column;
 }
 
+
+.product__card--left {
+    min-height: 550px;
+}
+
 .product__card--almostlast {
-    max-height: 460px;
+    max-height: 470px;
 }
 
 .product__card--last {
@@ -205,19 +297,19 @@ body {
 .product__image {
     display: flex;
     max-width: auto;
-    max-height: 400px;
+    max-height: 300px;
     flex-basis: 300px;
     object-fit: cover;
+}
+
+.product__image--left {
+    max-height: 500px;
 }
 
 .product__image--almostlast {
     height: 450px;
 }
 
-
-.product__visuals--last {
-    height: 200px;
-}
 
 .product__text {
     margin: 0 0.6rem 0.6rem;
@@ -270,20 +362,29 @@ body {
 
 
 
-@media screen and (max-width: 1330px) {
+@media screen and (max-width: 1292px) {
+
+    .product__card--left {
+        max-height: 600px;
+        min-height: unset;
+    }
 
     .product__card--almostlast {
         max-height: 600px;
     }
 
-    .product__visuals--last {
-        height: unset;
-    }
-    
- 
     .product__card--last {
         max-height: 600px;
     }
+
+    .product__image--left {
+        max-height: 300px;
+    }
+
+    .product__image--almostlast {
+        max-height: 300px;
+    }
+    
 
     .footer__wave {
         display: none;
@@ -296,7 +397,7 @@ body {
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1169px) {
 
     .header {
         display: flex;
@@ -304,6 +405,10 @@ body {
         width: 100%;
         justify-content: flex-start;
         align-items: center;
+    }
+
+    .header__hero {
+        padding-left: unset;
     }
     
     .header__nav {
@@ -323,36 +428,56 @@ body {
 
 
     .product {
-        width: 100%;
-        position: static;
+        max-width: unset;
+        position: unset;
         column-gap: 10px;
-        margin-top: 40px;
+        padding-top: 40px;
+        margin: 0 20px;
     }
 
 }
 
 
-@media screen and (max-width: 535px) {
+@media screen and (max-width: 600px) {
 
 
     .header {
         font-size: var(--fontSizeFourth);
+        width: 100%;
+        justify-content: space-around;
+        margin: unset;
     }
 
     .header__ul {
-        gap: 10px;
+        gap: unset;
+        margin: 80px 0;
     }
 
-    .header__svg {
-        position: relative;
-        top: -4px;
+
+    .header__hero {
+        align-items: center;
+    }
+
+
+    .header__button {
+        display: none;
+    }
+
+    .header__button--main, .header__button--ham {
+        display: unset;
+    }
+
+
+    #header__ham {
+        display: unset;
     }
 
     .product {
         display: grid;
         grid-template-columns: minmax(330px, 1fr);
         row-gap: 40px;
-        justify-self: center;
+        margin-top: 50px;
+        padding-top: unset;
     }
 
     .product__card {
